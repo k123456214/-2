@@ -1,0 +1,64 @@
+.page-scroll {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+.hero {
+  background: linear-gradient(135deg, #722ed1 0%, #b37feb 100%);
+  color: #fff;
+  padding: 50rpx 30rpx;
+  text-align: center;
+}
+.hero-icon { font-size: 80rpx; display: block; }
+.hero-title { font-size: 38rpx; font-weight: bold; margin-top: 16rpx; display: block; }
+.hero-sub { font-size: 26rpx; color: rgba(255,255,255,0.9); margin-top: 10rpx; display: block; }
+
+.hero-stats {
+  display: flex;
+  margin-top: 30rpx;
+  background: rgba(255,255,255,0.15);
+  border-radius: 16rpx;
+  padding: 20rpx 0;
+}
+.stat { flex: 1; }
+.stat-num { font-size: 32rpx; font-weight: bold; display: block; }
+.stat-label { font-size: 22rpx; color: rgba(255,255,255,0.85); }
+
+.actions {
+  background: #fff;
+  margin: 20rpx;
+  padding: 20rpx;
+  border-radius: 16rpx;
+}
+
+.join-btn {
+  background: #722ed1 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 40rpx !important;
+  padding: 20rpx 0 !important;
+  font-size: 30rpx !important;
+  font-weight: bold;
+  width: 100%;
+}
+.join-btn.joined { background: #52c41a !important; }
+
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 0 20rpx 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+.card-title { font-size: 30rpx; font-weight: bold; display: block; margin-bottom: 20rpx; }
+
+.post-item {
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+.post-item:last-child { border-bottom: none; }
+.post-title { font-size: 28rpx; font-weight: bold; display: block; }
+.post-meta { display: flex; gap: 20rpx; margin-top: 12rpx; font-size: 22rpx; color: #999; }
+
+.empty { text-align: center; padding: 60rpx 0; color: #999; font-size: 26rpx; }

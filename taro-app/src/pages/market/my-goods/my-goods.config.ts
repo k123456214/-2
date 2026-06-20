@@ -1,0 +1,4 @@
+export default definePageConfig({
+  navigationBarTitleText: '我的发布',
+  backgroundColor: '#f5f5f5'
+})

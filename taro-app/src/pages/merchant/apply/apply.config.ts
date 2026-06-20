@@ -1,0 +1,4 @@
+export default definePageConfig({
+  navigationBarTitleText: '商户入驻',
+  backgroundColor: '#f5f5f5'
+})
