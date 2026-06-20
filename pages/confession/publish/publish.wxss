@@ -1,0 +1,64 @@
+.page { background: #f7f2f8; }
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: #eb2f96;
+}
+
+.publish-textarea {
+  min-height: 400rpx;
+}
+
+.switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.switch {
+  width: 80rpx;
+  height: 44rpx;
+  border-radius: 44rpx;
+  background: #ccc;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.switch.on { background: #eb2f96; }
+
+.switch-dot {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 2rpx;
+  left: 2rpx;
+  transition: left 0.2s;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+}
+
+.switch.on .switch-dot { left: 38rpx; }
+
+.tip-text {
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff85c0 0%, #eb2f96 100%);
+  color: #fff;
+}
+
+.btn-primary::after { border: none; }
+
+.btn-block {
+  width: 100%;
+  padding: 22rpx 0;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+}

@@ -1,0 +1,48 @@
+<view class="page">
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="id"
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onTabTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view wx:if="{{orders.length > 0}}" class="order-list">
+    <view wx:for="{{orders}}" wx:for-index="idx" wx:key="id" class="card order-card">
+      <view class="order-header" bindtap="onDetail" data-id="{{item.id}}">
+        <text class="order-id text-sm">{{item.id}}</text>
+        <view wx:if="{{item.status === 1}}" class="tag tag-success">待接单</view>
+        <view wx:elif="{{item.status === 2}}" class="tag tag-warning">制作中</view>
+        <view wx:elif="{{item.status === 3}}" class="tag tag-danger">配送中</view>
+        <view wx:elif="{{item.status === 4}}" class="tag">已完成</view>
+        <view wx:else class="tag">已取消</view>
+      </view>
+      <view class="order-user-row">
+        <text class="user-name">{{item.userName}}</text>
+        <text class="text-primary text-sm" data-phone="{{item.phone}}" catchtap="onCall">📞 联系</text>
+      </view>
+      <view class="text-sm text-light">{{item.address}}</view>
+      <view wx:for="{{item.items}}" wx:for-item="it" wx:key="name" class="order-item-line">
+        <text class="flex-1">{{it.name}}</text>
+        <text class="text-sm">x{{it.count}}</text>
+        <text class="text-sm" style="margin-left:20rpx;">¥{{it.price}}</text>
+      </view>
+      <view class="order-total">
+        <text class="text-sm text-light">{{item.time}}</text>
+        <text class="price">合计 ¥{{item.total}}</text>
+      </view>
+      <view class="order-actions">
+        <view class="btn btn-outline btn-sm" data-id="{{item.id}}" catchtap="onPrint">🖨️ 打印</view>
+        <view wx:if="{{item.status === 1}}" class="btn btn-outline btn-sm" data-id="{{item.id}}" data-idx="{{idx}}" catchtap="onReject">拒单</view>
+        <view wx:if="{{item.status === 1}}" class="btn btn-sm" data-id="{{item.id}}" data-idx="{{idx}}" catchtap="onAccept">接单</view>
+        <view wx:if="{{item.status === 2}}" class="btn btn-sm" data-id="{{item.id}}" data-idx="{{idx}}" catchtap="onDeliver">开始配送</view>
+        <view wx:if="{{item.status === 3}}" class="btn btn-sm" data-id="{{item.id}}" data-idx="{{idx}}" catchtap="onComplete">完成</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">📋</text>
+    <text class="text-light">暂无订单</text>
+  </view>
+</view>

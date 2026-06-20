@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="card">
+    <view class="card-title">💌 写下你想说的话</view>
+    <textarea class="textarea publish-textarea" placeholder="写下你的心里话..." value="{{form.content}}" bindinput="onInput" maxlength="500" auto-height></textarea>
+  </view>
+
+  <view class="card">
+    <view class="switch-row" bindtap="toggleAnonymous">
+      <text class="text-bold">匿名发布</text>
+      <view class="switch {{form.isAnonymous ? 'on' : ''}}"><view class="switch-dot"></view></view>
+    </view>
+    <view class="tip-text text-sm text-light">匿名发布将不显示您的个人信息，所有内容会经过审核</view>
+  </view>
+
+  <view style="padding: 20rpx 40rpx 40rpx;">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '发布表白'}}
+    </button>
+  </view>
+</view>

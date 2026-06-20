@@ -1,0 +1,52 @@
+<view class="page">
+  <view class="card">
+    <view class="card-title">个人资料</view>
+    <view class="form-item">
+      <text class="form-label">昵称</text>
+      <input class="input" placeholder="请输入昵称" data-key="nickname" value="{{nickname}}" bindinput="onInput" maxlength="20" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">手机号</text>
+      <input class="input" type="number" placeholder="请输入手机号" data-key="phone" value="{{phone}}" bindinput="onInput" maxlength="11" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">角色</text>
+      <view class="role-list">
+        <view wx:for="{{roles}}" wx:key="id"
+          class="role-item {{role === item.id ? 'active' : ''}}"
+          data-role="{{item.id}}" bindtap="onRoleTap">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+    <button class="btn btn-primary btn-block mt-20" bindtap="saveProfile">保存修改</button>
+  </view>
+
+  <view class="card">
+    <view class="list-item" bindtap="onAddressTap">
+      <text class="list-icon">📍</text>
+      <text class="flex-1">地址管理</text>
+      <text class="text-light text-sm">›</text>
+    </view>
+    <view class="list-item" bindtap="onMessageTap">
+      <text class="list-icon">🔔</text>
+      <text class="flex-1">消息通知</text>
+      <text class="text-light text-sm">›</text>
+    </view>
+    <view class="list-item" bindtap="clearCache">
+      <text class="list-icon">🧹</text>
+      <text class="flex-1">清除缓存</text>
+      <text class="text-light text-sm">{{cacheSize}}</text>
+    </view>
+    <view class="list-item" bindtap="onAbout">
+      <text class="list-icon">ℹ️</text>
+      <text class="flex-1">关于我们</text>
+      <text class="text-light text-sm">v1.0.0</text>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{userInfo}}">
+    <button class="btn-danger btn-block" bindtap="onLogout">退出登录</button>
+  </view>
+  <view style="height:40rpx;"></view>
+</view>

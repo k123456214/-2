@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="search-bar">
+    <text class="search-icon">🔍</text>
+    <input placeholder="搜索二手商品..." value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearch" />
+    <view class="my-btn" bindtap="onMyGoods">我的</view>
+  </view>
+
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="id"
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onTabTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view class="grid-view" wx:if="{{goods.length > 0}}">
+    <view wx:for="{{goods}}" wx:key="id" class="grid-card" bindtap="onDetail" data-id="{{item.id}}">
+      <view class="grid-img">📦</view>
+      <view class="grid-content">
+        <view class="grid-title">{{item.title}}</view>
+        <view class="grid-price-row">
+          <text class="price">¥{{item.price}}</text>
+          <text class="text-sm original-price" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+        </view>
+        <view class="grid-footer">
+          <text class="text-sm text-light">{{item.seller}}</text>
+          <text class="text-sm text-light">📍 {{item.location}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">🛒</text>
+    <text class="text-light">暂无商品</text>
+  </view>
+
+  <view class="fab" bindtap="onPublish">+</view>
+</view>

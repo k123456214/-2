@@ -1,0 +1,68 @@
+<view class="page" wx:if="{{post}}">
+  <view class="card">
+    <view class="post-tags">
+      <view class="tag tag-warning" wx:if="{{post.isTop}}">置顶</view>
+      <view class="tag tag-success" wx:if="{{post.isEssence}}">精华</view>
+      <view class="tag" wx:if="{{post.isHot}}">🔥 热门</view>
+      <view class="tag">{{post.board}}</view>
+    </view>
+    <view class="post-title">{{post.title}}</view>
+    <view class="post-meta">
+      <text class="text-sm text-light">作者: {{post.author}}</text>
+      <text class="text-sm text-light" style="margin-left:20rpx;">👁️ {{post.views}}</text>
+    </view>
+    <view class="post-content">{{post.content}}</view>
+    <view class="post-actions">
+      <view class="action-item {{liked ? 'active' : ''}}" bindtap="onLike">
+        <text>👍 {{post.likes}}</text>
+      </view>
+      <view class="action-item {{favorited ? 'active' : ''}}" bindtap="onFavorite">
+        <text>⭐ 收藏</text>
+      </view>
+      <view class="action-item" bindtap="onShare">
+        <text>📤 分享</text>
+      </view>
+    </view>
+
+    <view class="vote-section" wx:if="{{post.vote && post.vote.options}}">
+      <view class="vote-title">{{post.vote.title}}</view>
+      <view wx:for="{{post.vote.options}}" wx:for-index="idx" wx:key="id" class="vote-option"
+        data-id="{{item.id}}" data-idx="{{idx}}" bindtap="onVote">
+        <view class="vote-option-text">{{item.text}}</view>
+        <view class="vote-count">{{item.count}} 票</view>
+      </view>
+      <view class="text-sm text-light" wx:if="{{voted}}">✅ 你已投票</view>
+    </view>
+  </view>
+
+  <view class="card comment-section">
+    <view class="card-title">评论 ({{post.comments}})</view>
+    <view wx:for="{{post.replies}}" wx:for-index="idx" wx:key="id" class="comment-item">
+      <view class="comment-avatar">👤</view>
+      <view class="comment-body">
+        <view class="comment-header">
+          <text class="text-bold">{{item.author}}</text>
+        </view>
+        <view class="comment-text">{{item.content}}</view>
+        <view class="comment-footer">
+          <text class="text-sm text-light">👍 {{item.likes}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!post.replies || post.replies.length === 0}}">
+      <text class="text-light text-sm">暂无评论，来抢沙发</text>
+    </view>
+  </view>
+
+  <view style="height: 160rpx;"></view>
+
+  <view class="comment-bar">
+    <input class="input comment-input" placeholder="说点什么..." value="{{commentInput}}" bindinput="onCommentInput" />
+    <view class="btn btn-sm btn-submit" bindtap="onSubmitComment">发送</view>
+  </view>
+</view>
+
+<view class="empty" wx:else>
+  <text class="empty-icon">📚</text>
+  <text class="text-light">加载中...</text>
+</view>

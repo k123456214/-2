@@ -1,0 +1,42 @@
+<view class="page">
+  <view class="search-bar">
+    <text class="search-icon">🔍</text>
+    <input placeholder="搜索帖子..." value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearch" />
+  </view>
+
+  <view class="tabs">
+    <view wx:for="{{boards}}" wx:key="id"
+      class="tab-item {{activeBoard === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onBoardTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view class="post-list" wx:if="{{posts.length > 0}}">
+    <view wx:for="{{posts}}" wx:key="id" class="card post-card" bindtap="onDetail" data-id="{{item.id}}">
+      <view class="post-tags">
+        <view class="tag tag-warning" wx:if="{{item.isTop}}">置顶</view>
+        <view class="tag tag-success" wx:if="{{item.isEssence}}">精华</view>
+        <view class="tag" wx:if="{{item.isHot}}">🔥 热门</view>
+        <view class="tag" wx:else>{{item.board}}</view>
+      </view>
+      <view class="post-title">{{item.title}}</view>
+      <view class="post-content text-sm text-secondary">{{item.content}}</view>
+      <view class="post-footer">
+        <text class="text-sm text-light">{{item.author}}</text>
+        <view class="post-meta">
+          <text class="text-sm text-light">👁️ {{item.views}}</text>
+          <text class="text-sm text-light" style="margin-left:16rpx;">👍 {{item.likes}}</text>
+          <text class="text-sm text-light" style="margin-left:16rpx;">💬 {{item.comments}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">📚</text>
+    <text class="text-light">暂无帖子</text>
+  </view>
+
+  <view class="fab" bindtap="onPublish">+</view>
+</view>

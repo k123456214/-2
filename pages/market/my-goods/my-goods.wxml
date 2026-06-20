@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="id"
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onTabTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view class="goods-list" wx:if="{{goods.length > 0}}">
+    <view wx:for="{{goods}}" wx:key="id" class="card goods-card">
+      <view class="goods-img">📦</view>
+      <view class="goods-info">
+        <view class="goods-title">{{item.title}}</view>
+        <view class="goods-price-row">
+          <text class="price">¥{{item.price}}</text>
+          <text class="text-sm text-light" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+        </view>
+        <view class="goods-meta">
+          <text class="text-sm text-light">👁️ {{item.views}}</text>
+          <text class="text-sm text-light">❤️ {{item.likes}}</text>
+        </view>
+        <view class="goods-actions">
+          <view wx:if="{{item.status === 1}}" class="btn btn-outline btn-sm" data-id="{{item.id}}" bindtap="onOffline">下架</view>
+          <view wx:if="{{item.status === 0}}" class="btn btn-success btn-sm" data-id="{{item.id}}" bindtap="onRelist">重新上架</view>
+          <view class="btn btn-sm" data-id="{{item.id}}" bindtap="onEdit">编辑</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">📦</text>
+    <text class="text-light">暂无商品</text>
+    <view class="btn mt-20" bindtap="onPublish">去发布</view>
+  </view>
+
+  <view class="fab" bindtap="onPublish">+</view>
+</view>

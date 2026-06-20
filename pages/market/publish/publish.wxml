@@ -1,0 +1,54 @@
+<view class="page">
+  <view class="card">
+    <view class="card-title">商品图片 (最多9张)</view>
+    <view class="img-upload" bindtap="onUpload">
+      <text class="upload-plus">+</text>
+      <text class="text-sm text-light">上传图片</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="form-item">
+      <text class="form-label">商品标题</text>
+      <input class="input" placeholder="例: 九成新 MacBook Pro" data-key="title" value="{{form.title}}" bindinput="onInput" maxlength="30" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">分类</text>
+      <view class="cat-row">
+        <view wx:for="{{categories}}" wx:key="*this"
+          class="cat-chip {{form.category === item ? 'active' : ''}}"
+          data-idx="{{index}}" bindtap="onCatTap">
+          {{item}}
+        </view>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">商品描述</text>
+      <textarea class="textarea" placeholder="简单介绍一下商品的新旧、配件等" data-key="description" value="{{form.description}}" bindinput="onInput" maxlength="500"></textarea>
+    </view>
+    <view class="form-row">
+      <view class="form-item half">
+        <text class="form-label">原价</text>
+        <input class="input" type="digit" placeholder="¥ 0" data-key="originalPrice" value="{{form.originalPrice}}" bindinput="onInput" />
+      </view>
+      <view class="form-item half">
+        <text class="form-label">售价</text>
+        <input class="input" type="digit" placeholder="¥ 0" data-key="price" value="{{form.price}}" bindinput="onInput" />
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">线下交易地点</text>
+      <input class="input" placeholder="如: 图书馆 / 南门 / 宿舍区" data-key="location" value="{{form.location}}" bindinput="onInput" maxlength="30" />
+    </view>
+    <view class="switch-row" bindtap="toggleNegotiable">
+      <text class="text-bold">支持议价</text>
+      <view class="switch {{form.negotiable ? 'on' : ''}}"><view class="switch-dot"></view></view>
+    </view>
+  </view>
+
+  <view style="padding: 20rpx 40rpx 40rpx;">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '发布中...' : '发布商品'}}
+    </button>
+  </view>
+</view>

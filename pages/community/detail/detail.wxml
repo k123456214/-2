@@ -1,0 +1,77 @@
+<view class="page" wx:if="{{community}}">
+  <view class="hero">
+    <view class="hero-title">{{community.name}}</view>
+    <view class="hero-desc">{{community.description}}</view>
+    <view class="hero-stats">
+      <text class="text-sm">👥 {{community.members}} 成员</text>
+      <text class="text-sm" style="margin-left:20rpx;">📝 {{community.posts}} 帖子</text>
+    </view>
+    <view wx:if="{{!community.joined}}" class="btn btn-sm join-btn" bindtap="onJoin">加入社区</view>
+    <view wx:else class="btn btn-outline btn-sm join-btn">已加入</view>
+  </view>
+
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="id"
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onTabTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'posts'}}" class="content-list">
+    <view wx:for="{{posts}}" wx:key="id" class="card post-card">
+      <view class="post-header">
+        <view class="avatar">👤</view>
+        <view style="flex:1;">
+          <view class="post-author">{{item.author}}</view>
+          <view class="text-sm text-light">刚刚</view>
+        </view>
+      </view>
+      <view class="post-content">{{item.content}}</view>
+      <view class="post-footer">
+        <text class="text-sm text-light">👍 {{item.likes}}</text>
+        <text class="text-sm text-light">💬 {{item.comments}}</text>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{posts.length === 0}}">
+      <text class="empty-icon">📝</text>
+      <text class="text-light">暂无动态</text>
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'activities'}}" class="content-list">
+    <view wx:for="{{activities}}" wx:key="id" class="card activity-card">
+      <view class="activity-header">
+        <text class="text-bold">{{item.title}}</text>
+        <view class="tag tag-success">报名 {{item.signupCount}}/{{item.capacity}}</view>
+      </view>
+      <view class="text-sm text-light mt-10">📍 {{item.location}}</view>
+      <view class="text-sm text-light">📅 即将开始</view>
+      <view class="activity-footer">
+        <text wx:if="{{item.fee > 0}}" class="price text-sm">¥{{item.fee}}</text>
+        <text wx:else class="text-sm text-success">免费</text>
+        <view class="btn btn-sm" data-id="{{item.id}}" bindtap="onActivitySignup">立即报名</view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{activities.length === 0}}">
+      <text class="empty-icon">🎯</text>
+      <text class="text-light">暂无活动</text>
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'members'}}" class="content-list">
+    <view class="card">
+      <view wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="*this" class="member-item">
+        <view class="avatar">👤</view>
+        <text class="text-bold">成员 {{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="fab" bindtap="onPublish" wx:if="{{activeTab === 'posts'}}">+</view>
+</view>
+
+<view class="empty" wx:else>
+  <text class="empty-icon">🎯</text>
+  <text class="text-light">加载中...</text>
+</view>

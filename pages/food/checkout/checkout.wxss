@@ -1,0 +1,51 @@
+.address-card {
+  background: linear-gradient(135deg, #e0f7fa 0%, #fff9c4 100%);
+}
+.address-name { font-size: 32rpx; font-weight: bold; margin-bottom: 10rpx; }
+.address-text { font-size: 26rpx; color: #666; }
+
+.goods-line {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx dashed #eee;
+}
+.goods-line:last-child { border-bottom: none; }
+
+.coupon {
+  display: flex;
+  width: 240rpx;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 2rpx solid #ff9800;
+  border-radius: 12rpx;
+  padding: 16rpx;
+}
+.coupon.selected {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: #fff;
+}
+.coupon.selected .coupon-info .text-light { color: rgba(255,255,255,0.8); }
+.coupon-price {
+  font-size: 36rpx;
+  color: #f57c00;
+  font-weight: bold;
+  padding-right: 16rpx;
+  border-right: 2rpx dashed #ff9800;
+}
+.coupon.selected .coupon-price { color: #fff; border-color: rgba(255,255,255,0.4); }
+.coupon-info { padding-left: 16rpx; }
+
+.pay-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.pay-item:last-child { border-bottom: none; }
+
+.price-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+}

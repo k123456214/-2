@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="banner">
+    <view class="banner-title">💌 表白墙</view>
+    <view class="banner-sub">写下你想说的话</view>
+  </view>
+
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="id"
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onTabTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view class="confession-list" wx:if="{{confessions.length > 0}}">
+    <view wx:for="{{confessions}}" wx:for-index="idx" wx:key="id" class="card confession-card" bindtap="onDetail" data-id="{{item.id}}">
+      <view class="confession-header">
+        <view class="avatar">💖</view>
+        <view style="flex:1;">
+          <text class="confession-author">{{item.author}}</text>
+          <view class="text-sm text-light">刚刚</view>
+        </view>
+      </view>
+      <view class="confession-content">{{item.content}}</view>
+      <view class="confession-footer" catchtap="">
+        <view class="like-btn" data-id="{{item.id}}" data-idx="{{idx}}" catchtap="onLike">
+          <text>❤️ {{item.likes}}</text>
+        </view>
+        <text class="text-sm text-light">💬 {{item.comments}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">💌</text>
+    <text class="text-light">暂无表白</text>
+  </view>
+
+  <view class="fab" bindtap="onPublish">+</view>
+</view>

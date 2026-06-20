@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="top-info">
+    <text class="loc">📍 {{location}}</text>
+    <text class="text-light text-sm">外卖 · 新鲜送达</text>
+  </view>
+
+  <view class="search-bar">
+    <text class="search-icon">🔍</text>
+    <input placeholder="搜索商家或商品" value="{{keyword}}" bindinput="onSearchInput" />
+  </view>
+
+  <scroll-view scroll-x class="cat-scroll">
+    <view class="cat-item {{activeCategory === idx ? 'active' : ''}}" 
+      wx:for="{{categories}}" wx:for-index="idx" wx:key="idx" 
+      data-idx="{{idx}}" bindtap="onCategoryTap">
+      {{item}}
+    </view>
+  </scroll-view>
+
+  <view wx:for="{{merchants}}" wx:key="id" class="shop-card" data-id="{{item.id}}" bindtap="onShopTap">
+    <view class="shop-thumb">🏪</view>
+    <view style="flex:1; margin-left: 20rpx">
+      <view class="flex-between">
+        <text class="shop-name">{{item.name}}</text>
+        <text class="rating">★ {{item.rating}}</text>
+      </view>
+      <view class="shop-meta">
+        <text>月销 {{item.sales}}</text>
+        <text>· 起送 ¥{{item.minOrder || 0}}</text>
+        <text>· 配送 ¥{{item.deliveryFee || 0}}</text>
+      </view>
+      <view class="shop-addr text-sm text-light mt-10">{{item.address}}</view>
+      <view class="mt-10">
+        <text class="tag tag-success">{{item.category}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{merchants.length === 0}}">
+    <text class="empty-icon">🍽️</text>
+    <text>暂无商户，再试试其他筛选条件</text>
+  </view>
+
+  <view style="padding: 40rpx; text-align: center; color: #999; font-size: 24rpx" wx:else>
+    <text wx:if="{{!hasMore}}">— 已加载全部 —</text>
+  </view>
+</view>

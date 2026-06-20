@@ -1,0 +1,50 @@
+<view class="page">
+  <view class="tabs">
+    <view wx:for="{{tabList}}" wx:key="id"
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onTabTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view wx:if="{{orders.length > 0}}" class="order-list">
+    <view wx:for="{{orders}}" wx:key="id" class="card order-card" bindtap="onOrderTap" data-id="{{item.id}}">
+      <view class="order-header">
+        <text class="shop-name" catchtap="onShopTap" data-shop="{{item.shopId}}">
+          🏪 {{item.shopName || '商家店铺'}}
+        </text>
+        <text class="status-text status-{{item.status}}">{{item.statusText}}</text>
+      </view>
+      <view wx:for="{{item.goods}}" wx:key="id" wx:for-item="g" class="goods-row">
+        <view class="goods-thumb">🍽️</view>
+        <view class="goods-info">
+          <text class="goods-name">{{g.name || '商品'}}</text>
+          <view class="text-sm text-light" wx:if="{{g.spec}}">{{g.spec}}</view>
+        </view>
+        <view class="goods-right">
+          <text class="price text-sm">¥{{g.price}}</text>
+          <text class="text-sm text-light">×{{g.count}}</text>
+        </view>
+      </view>
+      <view class="order-footer">
+        <text class="text-sm text-light">共 {{item.goods.length}} 件</text>
+        <text class="text-sm">合计: <text class="price">¥{{item.totalPrice}}</text></text>
+      </view>
+      <view class="order-actions">
+        <view wx:if="{{item.status === 0 || item.status === 1}}" class="btn btn-outline btn-sm" catchtap="onCancel" data-id="{{item.id}}">取消订单</view>
+        <view wx:if="{{item.status === 0}}" class="btn btn-sm" catchtap="onPay" data-id="{{item.id}}">立即付款</view>
+        <view wx:if="{{item.status === 2 || item.status === 3}}" class="btn btn-outline btn-sm" catchtap="onOrderTap" data-id="{{item.id}}">查看详情</view>
+        <view wx:if="{{item.status === 3}}" class="btn btn-success btn-sm" catchtap="onConfirm" data-id="{{item.id}}">确认收货</view>
+        <view wx:if="{{item.status === 4}}" class="btn btn-outline btn-sm" catchtap="onRefund" data-id="{{item.id}}">申请退款</view>
+        <view wx:if="{{item.status === 4}}" class="btn btn-outline btn-sm" catchtap="onShopTap" data-shop="{{item.shopId}}">再次购买</view>
+      </view>
+      <view class="text-sm text-light mt-10">{{item.createdText}}</view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">📋</text>
+    <text class="text-light">暂无订单</text>
+    <view class="btn mt-20" bindtap="onGoHome">去逛逛</view>
+  </view>
+</view>

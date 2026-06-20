@@ -1,0 +1,114 @@
+<!-- pages/index/index.wxml -->
+<view class="page">
+  <!-- 顶部搜索与用户 -->
+  <view class="header">
+    <view class="search-bar" bindtap="onNavigate" data-route="/pages/forum/list/list">
+      <text class="search-icon">🔍</text>
+      <input placeholder="搜索商品、帖子、社区..." disabled />
+    </view>
+  </view>
+
+  <!-- 轮播 Banner -->
+  <swiper class="banner" autoplay="{{true}}" circular="{{true}}" indicator-dots="{{true}}" indicator-active-color="#fff" indicator-color="rgba(255,255,255,0.5)">
+    <swiper-item wx:for="{{bannerList}}" wx:key="id" bindtap="onNavigate" data-route="{{item.route}}">
+      <view class="banner-item" style="background: linear-gradient(135deg, {{item.color}} 0%, {{item.color}}88 100%)">
+        <text class="banner-text">{{item.title}}</text>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 功能入口 -->
+  <view class="card">
+    <view class="card-title text-lg">快捷功能</view>
+    <view class="grid">
+      <view class="grid-item" wx:for="{{categories}}" wx:key="id" bindtap="onNavigate" data-route="{{item.route}}">
+        <view class="grid-icon" style="background: {{item.color}}22; color: {{item.color}}">
+          <text style="font-size: 48rpx">{{item.icon}}</text>
+        </view>
+        <text class="grid-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- DIY 页面入口 -->
+  <view class="card" wx:if="{{diyPages.length > 0}}">
+    <view class="card-header">
+      <text class="card-title">推荐内容</text>
+    </view>
+    <scroll-view scroll-x class="diy-scroll">
+      <view class="diy-card" wx:for="{{diyPages}}" wx:key="id" bindtap="onDiyTap" data-id="{{item.id}}">
+        <view class="diy-title">{{item.title}}</view>
+        <view class="diy-tag" wx:if="{{item.isH5}}">H5</view>
+        <view class="diy-tag" wx:else>DIY</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 热门商户 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">热门商户</text>
+      <text class="text-light text-sm" bindtap="onNavigate" data-route="/pages/merchant/list/list">查看更多 ›</text>
+    </view>
+    <view wx:for="{{merchants}}" wx:key="id" class="merchant-item" bindtap="onMerchantTap" data-id="{{item.id}}">
+      <view class="thumb">🏪</view>
+      <view class="flex-1" style="margin-left: 20rpx">
+        <view class="flex-between">
+          <text class="text-bold">{{item.name}}</text>
+          <text class="rating">★ {{item.rating}}</text>
+        </view>
+        <view class="text-sm text-secondary mt-10">{{item.description || item.address}}</view>
+        <view class="flex-between mt-10">
+          <view>
+            <text class="tag">销量 {{item.sales}}</text>
+            <text class="tag tag-success">{{item.category}}</text>
+          </view>
+          <text class="price text-sm">起¥{{item.minOrder || 0}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门商品 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">热销商品</text>
+      <text class="text-light text-sm" bindtap="onNavigate" data-route="/pages/food/index/index">更多 ›</text>
+    </view>
+    <view class="goods-grid">
+      <view class="goods-card" wx:for="{{hotGoods}}" wx:key="id" bindtap="onGoodsTap" data-id="{{item.id}}" data-shop="{{item.shopId}}">
+        <view class="goods-thumb">🍽️</view>
+        <view class="goods-name">{{item.name}}</view>
+        <view class="flex-between mt-10">
+          <text class="price">¥{{item.price}}</text>
+          <text class="text-sm text-light">销{{item.sales}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门论坛 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">校园热议</text>
+      <text class="text-light text-sm" bindtap="onNavigate" data-route="/pages/forum/list/list">全部 ›</text>
+    </view>
+    <view wx:for="{{forumHot}}" wx:key="id" class="forum-item" bindtap="onForumTap" data-id="{{item.id}}">
+      <view class="forum-title">
+        <text class="tag tag-warning" wx:if="{{item.isTop}}">置顶</text>
+        <text class="tag tag-success" wx:if="{{item.isEssence}}">精华</text>
+        <text>{{item.title}}</text>
+      </view>
+      <view class="text-sm text-secondary mt-10">{{item.content}}</view>
+      <view class="flex-between mt-10">
+        <text class="text-sm text-light">{{item.author}} · {{item.timeText}}</text>
+        <view class="forum-meta">
+          <text class="text-sm text-light">👍 {{item.likes}}</text>
+          <text class="text-sm text-light">💬 {{item.comments}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view style="text-align: center; padding: 40rpx; color: #999; font-size: 24rpx">— 我是有底线的 —</view>
+</view>

@@ -1,0 +1,15 @@
+<view class="h5-page">
+  <view wx:if="{{url}}" class="h5-wrap">
+    <web-view src="{{url}}" binderror="onWebError"></web-view>
+  </view>
+  <view wx:else class="fallback">
+    <text style="font-size: 80rpx; color: #ccc">🔗</text>
+    <view class="text-bold" style="font-size: 32rpx; margin: 20rpx 0">{{title}}</view>
+    <view class="text-light text-sm">此页面为外部链接</view>
+    <view class="text-light text-sm mt-10">{{url}}</view>
+    <button class="btn mt-20" bindtap="onCopy">复制链接</button>
+    <view class="text-sm text-light" style="margin-top: 40rpx; max-width: 80%; text-align: center">
+      提示: 小程序内置 web-view 仅可展示已配置的业务域名。
+    </view>
+  </view>
+</view>

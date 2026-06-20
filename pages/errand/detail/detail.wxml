@@ -1,0 +1,67 @@
+<view class="page" wx:if="{{task}}">
+  <view class="hero">
+    <view class="hero-row">
+      <view class="task-type">{{task.type}}</view>
+      <view wx:if="{{task.status === 0}}" class="tag tag-success">待接单</view>
+      <view wx:elif="{{task.status === 1}}" class="tag tag-warning">进行中</view>
+      <view wx:elif="{{task.status === 2}}" class="tag">已完成</view>
+      <view wx:else class="tag">已取消</view>
+    </view>
+    <view class="hero-title">{{task.title}}</view>
+    <view class="hero-fee">¥ {{task.fee}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">路线</view>
+    <view class="route">
+      <view class="route-item">
+        <view class="dot pickup"></view>
+        <view class="route-text">
+          <view class="text-sm text-light">取件</view>
+          <view class="text-bold">{{task.pickup}}</view>
+        </view>
+      </view>
+      <view class="route-line"></view>
+      <view class="route-item">
+        <view class="dot delivery"></view>
+        <view class="route-text">
+          <view class="text-sm text-light">送达</view>
+          <view class="text-bold">{{task.delivery}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="btn btn-outline btn-block mt-20" bindtap="onShowMap">🗺️ 查看地图</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">任务描述</view>
+    <view class="desc-text">{{task.description}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">联系人</view>
+    <view class="contact-row">
+      <text class="contact-label">发布人</text>
+      <text class="flex-1">{{task.publisher}}</text>
+      <text class="text-primary text-sm" data-phone="{{task.publisherPhone}}" bindtap="onCall">📞 联系</text>
+    </view>
+    <view class="contact-row" wx:if="{{task.runnerName}}">
+      <text class="contact-label">跑腿员</text>
+      <text class="flex-1">{{task.runnerName}}</text>
+      <text class="text-primary text-sm" data-phone="{{task.runnerPhone}}" bindtap="onCall">📞 联系</text>
+    </view>
+  </view>
+
+  <view class="action-bar">
+    <view wx:if="{{task.status === 0}}" class="btn btn-outline" bindtap="onCancel">取消任务</view>
+    <view wx:if="{{task.status === 0}}" class="btn btn-primary flex-1" bindtap="onAccept">立即接单</view>
+    <view wx:if="{{task.status === 1}}" class="btn btn-primary flex-1" bindtap="onComplete">完成任务</view>
+    <view wx:if="{{task.status === 2}}" class="btn btn-outline flex-1">任务已完成</view>
+    <view wx:if="{{task.status === 3}}" class="btn btn-outline flex-1">任务已取消</view>
+  </view>
+</view>
+
+<view class="empty" wx:else>
+  <text class="empty-icon">📋</text>
+  <text class="text-light">加载中...</text>
+</view>

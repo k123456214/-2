@@ -1,0 +1,74 @@
+.goods-list { padding: 20rpx; padding-bottom: 120rpx; }
+
+.goods-card {
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.goods-thumb {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 12rpx;
+  background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+  flex-shrink: 0;
+}
+
+.goods-info {
+  flex: 1;
+  margin-left: 20rpx;
+  min-width: 0;
+}
+
+.goods-name {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.goods-bottom {
+  margin-top: 12rpx;
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+}
+
+.goods-actions {
+  width: 100%;
+  margin-top: 16rpx;
+  display: flex;
+  gap: 12rpx;
+  justify-content: flex-end;
+}
+
+.btn-outline {
+  background: #fff;
+  color: #333;
+  border: 2rpx solid #ddd;
+}
+
+.btn-danger {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+.fab {
+    position: fixed;
+    right: 40rpx;
+    bottom: 80rpx;
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    background: #1890ff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56rpx;
+    line-height: 1;
+    box-shadow: 0 8rpx 24rpx rgba(24, 144, 255, 0.35);
+    z-index: 50;
+  }

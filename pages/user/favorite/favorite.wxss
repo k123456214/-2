@@ -1,0 +1,38 @@
+.fav-list { padding: 20rpx; }
+.fav-card {
+  margin: 0 0 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.fav-thumb {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 12rpx;
+  background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+  flex-shrink: 0;
+}
+
+.fav-info {
+  flex: 1;
+  margin-left: 20rpx;
+  overflow: hidden;
+}
+
+.fav-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+
+.fav-price {
+  margin-top: 12rpx;
+}
+
+.fav-action {
+  margin-left: 20rpx;
+}

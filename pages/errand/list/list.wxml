@@ -1,0 +1,44 @@
+<view class="page">
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="id"
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onTabTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view wx:if="{{tasks.length > 0}}" class="task-list">
+    <view wx:for="{{tasks}}" wx:key="id" class="card task-card" bindtap="onDetail" data-id="{{item.id}}">
+      <view class="task-header">
+        <view class="task-type">{{item.type}}</view>
+        <view class="task-title">{{item.title}}</view>
+      </view>
+      <view class="task-location">
+        <text class="loc-icon">📍</text>
+        <text class="text-sm">{{item.pickup}}</text>
+        <text class="arrow-icon">→</text>
+        <text class="text-sm">{{item.delivery}}</text>
+      </view>
+      <view class="task-footer">
+        <view class="price">¥{{item.fee}}</view>
+        <view class="task-status">
+          <view wx:if="{{item.status === 0}}" class="tag tag-success">待接单</view>
+          <view wx:elif="{{item.status === 1}}" class="tag tag-warning">进行中</view>
+          <view wx:elif="{{item.status === 2}}" class="tag">已完成</view>
+          <view wx:else class="tag">已取消</view>
+          <view wx:if="{{item.status === 0 && activeTab === 'nearby'}}" class="btn btn-sm accept-btn" catchtap="onAccept" data-id="{{item.id}}">
+            立即接单
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">🏃</text>
+    <text class="text-light">暂无任务</text>
+    <view class="btn mt-20" bindtap="onPublishTap">发布新任务</view>
+  </view>
+
+  <view class="fab" bindtap="onPublishTap">+</view>
+</view>

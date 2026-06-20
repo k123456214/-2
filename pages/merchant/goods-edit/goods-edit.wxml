@@ -1,0 +1,106 @@
+<view class="page">
+  <view class="card">
+    <view class="card-title">基础信息</view>
+    <view class="form-item">
+      <text class="form-label">商品图片</text>
+      <view class="image-box" bindtap="onImageTap">
+        <text class="image-plus">+</text>
+        <text class="text-sm text-light">上传图片</text>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">商品名称</text>
+      <input class="input" placeholder="请输入商品名称" data-key="name" value="{{form.name}}" bindinput="onInput" maxlength="30" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">商品分类</text>
+      <view class="cat-selector">
+        <view wx:for="{{categories}}" wx:key="*this"
+          class="cat-chip {{form.category === item ? 'active' : ''}}"
+          data-idx="{{index}}" bindtap="onCatTap">
+          {{item}}
+        </view>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-item half">
+        <text class="form-label">现价 (¥)</text>
+        <input class="input" type="digit" placeholder="0.00" data-key="price" value="{{form.price}}" bindinput="onInput" />
+      </view>
+      <view class="form-item half">
+        <text class="form-label">原价 (¥)</text>
+        <input class="input" type="digit" placeholder="0.00" data-key="originalPrice" value="{{form.originalPrice}}" bindinput="onInput" />
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">库存</text>
+      <input class="input" type="number" placeholder="请输入库存数量" data-key="stock" value="{{form.stock}}" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">商品描述</text>
+      <textarea class="textarea" placeholder="请输入商品描述" data-key="description" value="{{form.description}}" bindinput="onInput" maxlength="200"></textarea>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">属性配置 (可选)</text>
+      <text class="text-primary text-sm" bindtap="addAttr">+ 添加属性</text>
+    </view>
+    <view wx:for="{{attrs}}" wx:for-index="idx" wx:key="idx" class="attr-block">
+      <view class="attr-header">
+        <text class="text-bold">属性 {{idx + 1}}</text>
+        <text class="text-danger text-sm" data-idx="{{idx}}" bindtap="removeAttr">删除</text>
+      </view>
+      <view class="form-item">
+        <text class="form-label">属性名称</text>
+        <input class="input" placeholder="如: 口味、加料、数量" data-idx="{{idx}}" data-key="name" bindinput="onAttrInput" value="{{item.name}}" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">类型</text>
+        <view class="cat-selector">
+          <view wx:for="{{['select','multiselect','number','text']}}" wx:for-item="t" wx:key="*this"
+            class="cat-chip {{item.type === t ? 'active' : ''}}"
+            data-idx="{{idx}}" data-type="{{t}}" bindtap="onAttrTypeTap">
+            {{t === 'select' ? '单选' : t === 'multiselect' ? '多选' : t === 'number' ? '数字' : '文本'}}
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{item.type === 'select' || item.type === 'multiselect'}}" class="form-item">
+        <text class="form-label">选项 (用英文逗号分隔)</text>
+        <input class="input" placeholder="原味,香辣,黑椒" data-idx="{{idx}}" data-key="options" bindinput="onAttrInput" value="{{item.options}}" />
+      </view>
+      <view wx:if="{{item.type === 'number'}}" class="form-row">
+        <view class="form-item half">
+          <text class="form-label">最小值</text>
+          <input class="input" type="number" placeholder="0" data-idx="{{idx}}" data-key="min" bindinput="onAttrInput" value="{{item.min}}" />
+        </view>
+        <view class="form-item half">
+          <text class="form-label">最大值</text>
+          <input class="input" type="number" placeholder="10" data-idx="{{idx}}" data-key="max" bindinput="onAttrInput" value="{{item.max}}" />
+        </view>
+      </view>
+      <view wx:if="{{item.type === 'multiselect'}}" class="form-item">
+        <text class="form-label">每项附加价格 (¥)</text>
+        <input class="input" type="digit" placeholder="如: 3" data-idx="{{idx}}" data-key="extraPrice" bindinput="onAttrInput" value="{{item.extraPrice}}" />
+      </view>
+      <view class="form-item">
+        <view class="switch-row" data-idx="{{idx}}" bindtap="toggleAttrRequired">
+          <text>必填项</text>
+          <view class="switch {{item.required ? 'on' : ''}}">
+            <view class="switch-dot"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{attrs.length === 0}}" class="text-light text-sm" style="padding: 30rpx 0; text-align:center;">
+      暂未配置属性，点击上方"+ 添加属性"配置规格
+    </view>
+  </view>
+
+  <view style="padding: 20rpx 40rpx 40rpx;">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : (isEdit ? '保存修改' : '创建商品')}}
+    </button>
+  </view>
+</view>

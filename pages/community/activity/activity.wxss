@@ -1,0 +1,35 @@
+.activity-list { padding: 20rpx; }
+
+.activity-card {
+  margin-bottom: 20rpx;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.activity-meta {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 8rpx;
+}
+
+.activity-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f0f0f0;
+  margin-top: 16rpx;
+}
+
+.text-success { color: #52c41a; }
+
+.btn-outline {
+  background: #fff;
+  color: #666;
+  border: 2rpx solid #ddd;
+}

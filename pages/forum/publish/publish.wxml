@@ -1,0 +1,43 @@
+<view class="page">
+  <view class="card">
+    <view class="form-item">
+      <text class="form-label">选择板块</text>
+      <view class="cat-row">
+        <view wx:for="{{boards}}" wx:key="*this"
+          class="cat-chip {{form.board === item ? 'active' : ''}}"
+          data-idx="{{index}}" bindtap="onBoardTap">
+          {{item}}
+        </view>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">标题</text>
+      <input class="input" placeholder="请输入标题" data-key="title" value="{{form.title}}" bindinput="onInput" maxlength="50" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">正文</text>
+      <textarea class="textarea big-textarea" placeholder="写下你的想法..." data-key="content" value="{{form.content}}" bindinput="onInput" maxlength="2000"></textarea>
+    </view>
+    <view class="switch-row" bindtap="toggleHasVote">
+      <text class="text-bold">添加投票</text>
+      <view class="switch {{hasVote ? 'on' : ''}}"><view class="switch-dot"></view></view>
+    </view>
+    <view wx:if="{{hasVote}}" class="vote-options">
+      <view wx:for="{{voteOptions}}" wx:for-index="idx" wx:key="idx" class="vote-input-row">
+        <input class="input" placeholder="选项 {{idx + 1}}" data-idx="{{idx}}" value="{{item}}" bindinput="onVoteOptionInput" maxlength="50" />
+        <view class="text-sm text-light remove-btn" data-idx="{{idx}}" bindtap="removeVoteOption" wx:if="{{voteOptions.length > 2}}">删除</view>
+      </view>
+      <view class="btn btn-outline btn-sm" bindtap="addVoteOption">+ 添加选项</view>
+    </view>
+    <view class="switch-row" bindtap="toggleAnonymous">
+      <text class="text-bold">匿名发布</text>
+      <view class="switch {{form.anonymous ? 'on' : ''}}"><view class="switch-dot"></view></view>
+    </view>
+  </view>
+
+  <view style="padding: 20rpx 40rpx 40rpx;">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '发布中...' : '发布帖子'}}
+    </button>
+  </view>
+</view>
