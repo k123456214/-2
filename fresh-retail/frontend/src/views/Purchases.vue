@@ -286,7 +286,8 @@ async function viewDetail(row) {
 
 async function handleReceive(row) {
   try {
-    await purchases.receiveItem(row.id, {})
+    // receiveItem 需要 (orderId, itemId, data) - 此处为简化演示直接用行数据
+    await purchases.receiveItem(row.purchaseOrderId || row.id, row.id, { receivedQty: row.qty - (row.receivedQty || 0) })
     ElMessage.success('收货确认成功')
     fetchList()
   } catch (e) {

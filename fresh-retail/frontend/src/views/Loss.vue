@@ -221,7 +221,7 @@ async function handleReject(row) {
   try {
     await ElMessageBox.prompt('请输入驳回原因', '驳回报损', { inputPlaceholder: '驳回原因' })
       .then(async ({ value }) => {
-        await loss.reject(row.id, { reason: value })
+        await loss.reject(row.id)
         ElMessage.success('已驳回')
         fetchList()
       })

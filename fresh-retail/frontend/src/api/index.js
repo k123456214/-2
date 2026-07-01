@@ -5,10 +5,10 @@ export const auth = {
   login: (data) => request.post('/auth/login', data),
   getProfile: () => request.get('/auth/profile'),
   updateProfile: (data) => request.put('/auth/profile', data),
-  getUsers: (params) => request.get('/users', { params }),
-  createUser: (data) => request.post('/users', data),
-  updateUser: (id, data) => request.put(`/users/${id}`, data),
-  deleteUser: (id) => request.delete(`/users/${id}`),
+  getUsers: (params) => request.get('/auth/users', { params }),
+  createUser: (data) => request.post('/auth/users', data),
+  updateUser: (id, data) => request.put(`/auth/users/${id}`, data),
+  deleteUser: (id) => request.delete(`/auth/users/${id}`),
 }
 
 // ========== 商品管理 ==========
@@ -18,10 +18,11 @@ export const products = {
   create: (data) => request.post('/products', data),
   update: (id, data) => request.put(`/products/${id}`, data),
   remove: (id) => request.delete(`/products/${id}`),
-  getCategories: (params) => request.get('/product-categories', { params }),
-  createCategory: (data) => request.post('/product-categories', data),
-  updateCategory: (id, data) => request.put(`/product-categories/${id}`, data),
-  removeCategory: (id) => request.delete(`/product-categories/${id}`),
+  getCategories: (params) => request.get('/products/categories/tree', { params }),
+  getCategoryList: (params) => request.get('/products/categories/list', { params }),
+  createCategory: (data) => request.post('/products/categories', data),
+  updateCategory: (id, data) => request.put(`/products/categories/${id}`, data),
+  removeCategory: (id) => request.delete(`/products/categories/${id}`),
 }
 
 // ========== 库存管理 ==========
@@ -51,9 +52,9 @@ export const members = {
   recharge: (id, data) => request.post(`/members/${id}/recharge`, data),
   addPoints: (id, data) => request.post(`/members/${id}/points/add`, data),
   deductPoints: (id, data) => request.post(`/members/${id}/points/deduct`, data),
-  getLevels: (params) => request.get('/member-levels', { params }),
-  createLevel: (data) => request.post('/member-levels', data),
-  updateLevel: (id, data) => request.put(`/member-levels/${id}`, data),
+  getLevels: (params) => request.get('/members/levels', { params }),
+  createLevel: (data) => request.post('/members/levels', data),
+  updateLevel: (id, data) => request.put(`/members/levels/${id}`, data),
 }
 
 // ========== 门店管理 ==========
@@ -80,7 +81,7 @@ export const purchases = {
   getDetail: (id) => request.get(`/purchases/${id}`),
   create: (data) => request.post('/purchases', data),
   updateStatus: (id, data) => request.put(`/purchases/${id}/status`, data),
-  receiveItem: (id, data) => request.post(`/purchases/${id}/receive`, data),
+  receiveItem: (orderId, itemId, data) => request.put(`/purchases/${orderId}/items/${itemId}/receive`, data),
   getStatistics: (params) => request.get('/purchases/statistics', { params }),
 }
 
@@ -89,7 +90,7 @@ export const loss = {
   getList: (params) => request.get('/loss', { params }),
   create: (data) => request.post('/loss', data),
   approve: (id) => request.put(`/loss/${id}/approve`),
-  reject: (id, data) => request.put(`/loss/${id}/reject`, data),
+  reject: (id) => request.put(`/loss/${id}/reject`),
   getStatistics: (params) => request.get('/loss/statistics', { params }),
 }
 
