@@ -1,0 +1,272 @@
+/* ========== 全局重置 ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  background-color: #f5f7fa;
+}
+
+/* ========== 全局工具类 ========== */
+.page-container {
+  padding: 20px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.page-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #303133;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ========== 主色调覆盖 Element Plus ========== */
+:root {
+  --el-color-primary: #67C23A;
+  --el-color-primary-light-3: #95d475;
+  --el-color-primary-light-5: #b3e19d;
+  --el-color-primary-light-7: #d1edc4;
+  --el-color-primary-light-8: #e1f3d8;
+  --el-color-primary-light-9: #f0f9eb;
+  --el-color-primary-dark-2: #529b2e;
+}
+
+/* ========== 卡片增强 ========== */
+.el-card {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ========== 表格增强 ========== */
+.el-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ========== 统计卡片 ========== */
+.stat-card {
+  text-align: center;
+}
+
+.stat-card .stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #67C23A;
+}
+
+.stat-card .stat-label {
+  font-size: 14px;
+  color: #909399;
+  margin-top: 8px;
+}
+
+/* ========== 按钮组 ========== */
+.el-button--primary {
+  --el-button-bg-color: #67C23A;
+  --el-button-border-color: #67C23A;
+  --el-button-hover-bg-color: #85ce61;
+  --el-button-hover-border-color: #85ce61;
+  --el-button-active-bg-color: #5daf34;
+  --el-button-active-border-color: #5daf34;
+}
+
+/* ========== 登录页 ========== */
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #67C23A 0%, #e1f3d8 100%);
+}
+
+.login-card {
+  width: 420px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.login-card .login-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-card .login-title h1 {
+  font-size: 24px;
+  color: #67C23A;
+  margin-bottom: 8px;
+}
+
+.login-card .login-title p {
+  font-size: 14px;
+  color: #909399;
+}
+
+/* ========== 布局 ========== */
+.layout-container {
+  height: 100vh;
+}
+
+.layout-aside {
+  background-color: #304156;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.layout-aside .el-menu {
+  border-right: none;
+}
+
+.layout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  padding: 0 20px;
+  height: 60px !important;
+}
+
+.layout-header .header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.layout-header .header-left .system-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #67C23A;
+}
+
+.layout-header .header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.layout-main {
+  background-color: #f5f7fa;
+  overflow-y: auto;
+}
+
+/* ========== 收银台 ========== */
+.cashier-container {
+  display: flex;
+  height: 100%;
+  gap: 16px;
+  padding: 0;
+}
+
+.cashier-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.cashier-right {
+  width: 400px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cashier-right .cart-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #ebeef5;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.product-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: 1px solid #ebeef5;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.product-grid-item:hover {
+  border-color: #67C23A;
+  background-color: #f0f9eb;
+  transform: translateY(-2px);
+}
+
+.product-grid-item .product-name {
+  font-size: 13px;
+  color: #303133;
+  margin-bottom: 4px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.product-grid-item .product-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #67C23A;
+}
+
+/* ========== Dashboard 图表 ========== */
+.chart-container {
+  width: 100%;
+  height: 350px;
+}
+
+/* ========== 滚动条美化 ========== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f7fa;
+}
