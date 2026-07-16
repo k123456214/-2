@@ -1,0 +1,65 @@
+<view class="page">
+  <view class="banner">
+    <view class="banner-title">🏪 申请入驻校园商户</view>
+    <view class="banner-sub">专业运营团队 · 海量用户流量 · 快速开店</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">营业执照信息</view>
+    <view class="form-item">
+      <text class="form-label">店铺名称</text>
+      <input class="input" placeholder="请输入店铺名称" data-key="name" value="{{form.name}}" bindinput="onInput" maxlength="30" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">法人姓名</text>
+      <input class="input" placeholder="请输入法人姓名" data-key="legalName" value="{{form.legalName}}" bindinput="onInput" maxlength="20" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">身份证号</text>
+      <input class="input" placeholder="请输入身份证号" data-key="idCard" value="{{form.idCard}}" bindinput="onInput" maxlength="18" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">联系电话</text>
+      <input class="input" type="number" placeholder="请输入手机号" data-key="phone" value="{{form.phone}}" bindinput="onInput" maxlength="11" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">店铺分类</text>
+      <view class="cat-selector">
+        <view wx:for="{{categories}}" wx:key="*this"
+          class="cat-chip {{form.category === item ? 'active' : ''}}"
+          data-idx="{{index}}" bindtap="onCatTap">
+          {{item}}
+        </view>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">店铺地址</text>
+      <input class="input" placeholder="请输入详细地址" data-key="address" value="{{form.address}}" bindinput="onInput" maxlength="50" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">店铺简介</text>
+      <textarea class="textarea" placeholder="简单介绍您的店铺 (50字内)" data-key="description" value="{{form.description}}" bindinput="onInput" maxlength="50"></textarea>
+    </view>
+    <view class="form-item">
+      <text class="form-label">营业执照</text>
+      <view class="upload-box" data-type="license" bindtap="onUpload">
+        <text class="upload-icon">📄</text>
+        <text class="text-sm text-light">点击上传营业执照</text>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">法人手持身份证</text>
+      <view class="upload-box" data-type="idcard" bindtap="onUpload">
+        <text class="upload-icon">🆔</text>
+        <text class="text-sm text-light">点击上传身份证照片</text>
+      </view>
+    </view>
+  </view>
+
+  <view style="padding: 20rpx 40rpx 40rpx;">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '提交申请'}}
+    </button>
+  </view>
+  <view class="text-light text-sm" style="text-align:center;">提交后请耐心等待审核通知</view>
+</view>

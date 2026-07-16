@@ -1,0 +1,135 @@
+.page-banner {
+  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);
+  padding: 50rpx 30rpx;
+  color: #fff;
+}
+
+.page-title {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.diy-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #1890ff;
+  line-height: 1.5;
+}
+
+.diy-text {
+  font-size: 30rpx;
+  line-height: 1.8;
+  color: #333;
+}
+
+.diy-richtext {
+  font-size: 30rpx;
+  line-height: 1.8;
+  color: #333;
+}
+
+.diy-image-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.diy-image {
+  width: 100%;
+  height: 400rpx;
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 100rpx;
+  margin-bottom: 12rpx;
+}
+
+.diy-divider {
+  padding: 30rpx 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.diy-divider .line {
+  flex: 1;
+  height: 2rpx;
+  background: #e8e8e8;
+}
+
+.diy-btn-block {
+  padding: 20rpx;
+}
+
+.diy-button {
+  width: 100%;
+  padding: 24rpx 0;
+  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);
+  color: #fff;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(24, 144, 255, 0.2);
+}
+
+.diy-goods {
+  margin: 0 20rpx;
+}
+
+.card-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.goods-mini {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.goods-mini:last-child { border-bottom: none; }
+
+.goods-mini-img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  flex-shrink: 0;
+}
+
+.goods-mini-info {
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goods-mini-name {
+  font-size: 28rpx;
+}
+
+.goods-mini-price {
+  font-size: 30rpx;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.empty {
+  padding: 100rpx 40rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  display: block;
+  margin-bottom: 20rpx;
+}

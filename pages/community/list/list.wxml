@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="tabs">
+    <scroll-view scroll-x class="tabs-scroll">
+      <view wx:for="{{tabs}}" wx:key="id"
+        class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+        data-id="{{item.id}}" bindtap="onTabTap">
+        {{item.name}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="community-list" wx:if="{{communities.length > 0}}">
+    <view wx:for="{{communities}}" wx:for-index="idx" wx:key="id" class="card community-card" bindtap="onDetail" data-id="{{item.id}}">
+      <view class="community-cover">
+        <view class="cover-text">{{item.name}}</view>
+      </view>
+      <view class="community-info">
+        <view class="community-header">
+          <text class="community-name">{{item.name}}</text>
+          <view class="tag">{{item.category}}</view>
+        </view>
+        <view class="community-desc text-sm text-light">{{item.description}}</view>
+        <view class="community-footer">
+          <text class="text-sm text-light">👥 {{item.members}} · 📝 {{item.posts}}</text>
+          <view wx:if="{{item.joined}}" class="tag">已加入</view>
+          <view wx:else class="btn btn-sm join-btn" catchtap="onJoin" data-id="{{item.id}}" data-idx="{{idx}}">加入</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">🎯</text>
+    <text class="text-light">暂无社区</text>
+  </view>
+
+  <view class="fab" bindtap="onCreate">+</view>
+</view>

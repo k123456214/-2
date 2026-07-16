@@ -1,0 +1,69 @@
+.page-scroll {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+.header {
+  background: linear-gradient(135deg, #722ed1 0%, #b37feb 100%);
+  padding: 30rpx 20rpx;
+  color: #fff;
+}
+.header-title { font-size: 36rpx; font-weight: bold; padding: 0 20rpx 20rpx; display: block; }
+
+.search-bar {
+  display: flex; align-items: center; padding: 16rpx 24rpx;
+  background: rgba(255,255,255,0.95); border-radius: 40rpx;
+  margin: 0 20rpx;
+}
+.search-icon { margin-right: 12rpx; color: #999; }
+.search-input { flex: 1; font-size: 26rpx; color: #333; }
+
+.quick-row {
+  display: flex;
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  padding: 24rpx 0;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+.quick-item {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10rpx;
+}
+.quick-icon { font-size: 44rpx; }
+.quick-text { font-size: 24rpx; color: #333; }
+
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 0 20rpx 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+.card-title { font-size: 30rpx; font-weight: bold; display: block; margin-bottom: 20rpx; }
+
+.merchant-item {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+.merchant-item:last-child { border-bottom: none; }
+
+.merchant-thumb {
+  width: 120rpx; height: 120rpx;
+  background: linear-gradient(135deg, #f5f0ff 0%, #d3adf7 100%);
+  border-radius: 12rpx;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48rpx; flex-shrink: 0;
+}
+
+.merchant-info { flex: 1; margin-left: 20rpx; min-width: 0; }
+.merchant-top { display: flex; justify-content: space-between; align-items: center; }
+.merchant-name { font-size: 30rpx; font-weight: bold; }
+.rating { color: #faad14; font-size: 24rpx; }
+.merchant-meta { font-size: 24rpx; color: #999; margin-top: 8rpx; display: block; }
+.merchant-address { font-size: 24rpx; color: #666; margin-top: 8rpx; display: block; }
+
+.empty { text-align: center; padding: 80rpx 0; color: #999; }

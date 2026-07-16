@@ -1,0 +1,4 @@
+export default definePageConfig({
+  navigationBarTitleText: '兴趣社区',
+  backgroundColor: '#f5f5f5'
+})

@@ -1,0 +1,77 @@
+<view class="page" wx:if="{{shop}}">
+  <view class="shop-banner">
+    <view class="shop-logo">🏪</view>
+    <view style="flex:1; margin-left: 20rpx;">
+      <view class="shop-name">{{shop.name}}</view>
+      <view class="shop-sub">
+        <text class="rating">★ {{shop.rating}}</text>
+        <text class="text-sm text-light" style="margin-left:16rpx;">月销{{shop.sales}}</text>
+      </view>
+      <view class="text-sm text-light" style="margin-top:8rpx;">起送¥{{shop.minOrder || 0}} · 配送¥{{shop.deliveryFee || 0}}</view>
+    </view>
+  </view>
+
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="id"
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onTabTap">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'goods'}}" style="padding: 20rpx;">
+    <view wx:for="{{goods}}" wx:key="id" class="card goods-card" bindtap="onGoodsTap">
+      <view class="goods-thumb">🍽️</view>
+      <view class="goods-info">
+        <text class="goods-name">{{item.name}}</text>
+        <view class="text-sm text-light mt-10">{{item.description || '美味推荐'}}</view>
+        <view class="goods-bottom">
+          <text class="price">¥{{item.price}}</text>
+          <text class="text-sm text-light" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{goods.length === 0}}">
+      <text class="empty-icon">🍽️</text>
+      <text class="text-light">暂无商品</text>
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'detail'}}" style="padding:20rpx;">
+    <view class="card">
+      <view class="info-row">
+        <text class="info-label">营业时段</text>
+        <text class="flex-1">{{shop.openTime || '09:00-22:00'}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">店铺地址</text>
+        <text class="flex-1" bindtap="onLocationTap">{{shop.address}} ›</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">联系电话</text>
+        <text class="flex-1 text-primary" bindtap="onCallTap">{{shop.phone}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">店铺介绍</text>
+        <text class="flex-1 text-secondary">{{shop.description || '欢迎光临！'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer-bar">
+    <view class="footer-btn" bindtap="onCallTap">
+      <text class="footer-icon">📞</text>
+      <text class="text-sm">联系</text>
+    </view>
+    <view class="footer-btn" bindtap="onLocationTap">
+      <text class="footer-icon">📍</text>
+      <text class="text-sm">导航</text>
+    </view>
+    <button class="btn btn-primary btn-block" bindtap="onOrderTap">立即下单</button>
+  </view>
+</view>
+
+<view class="empty" wx:else>
+  <text class="empty-icon">🏪</text>
+  <text class="text-light">加载中...</text>
+</view>

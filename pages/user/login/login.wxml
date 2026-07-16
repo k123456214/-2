@@ -1,0 +1,91 @@
+<view class="login-page">
+  <view class="logo-area">
+    <view class="logo-circle">
+      <text class="logo-text">校</text>
+    </view>
+    <view class="welcome-title">校园综合服务</view>
+    <view class="welcome-subtitle">外卖 · 跑腿 · 社区 · 论坛</view>
+  </view>
+
+  <view class="tabs">
+    <view class="tab-item {{mode === 'wx' ? 'active' : ''}}" data-mode="wx" bindtap="switchMode">微信登录</view>
+    <view class="tab-item {{mode === 'phone' ? 'active' : ''}}" data-mode="phone" bindtap="switchMode">手机号</view>
+    <view class="tab-item {{mode === 'reg' ? 'active' : ''}}" data-mode="reg" bindtap="switchMode">注册</view>
+  </view>
+
+  <view class="form-area">
+    <view wx:if="{{mode === 'wx'}}" class="wx-login">
+      <view class="tip-text">一键登录，尽享校园生活</view>
+      <view class="role-selector">
+        <text class="text-secondary text-sm">选择角色 (演示)</text>
+        <view class="role-list">
+          <view wx:for="{{roles}}" wx:key="id"
+            class="role-item {{role === item.id ? 'active' : ''}}"
+            data-role="{{item.id}}" bindtap="onRoleTap">
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+      <button class="btn btn-primary btn-block" bindtap="wxLogin">微信一键登录</button>
+    </view>
+
+    <view wx:if="{{mode === 'phone'}}" class="phone-login">
+      <view class="form-item">
+        <text class="form-label">手机号</text>
+        <input class="input" type="number" placeholder="请输入手机号" maxlength="11"
+          data-key="phone" value="{{phone}}" bindinput="onInput" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">验证码</text>
+        <view class="code-input">
+          <input class="input" type="number" placeholder="请输入验证码" maxlength="6"
+            data-key="code" value="{{code}}" bindinput="onInput" />
+          <button class="code-btn" bindtap="sendCode" disabled="{{countdown > 0}}">
+            {{countdown > 0 ? countdown + 's' : '获取验证码'}}
+          </button>
+        </view>
+      </view>
+      <view class="agree-row" bindtap="toggleAgree">
+        <view class="checkbox {{agree ? 'checked' : ''}}"></view>
+        <text class="text-sm">已阅读并同意</text>
+        <text class="text-primary text-sm">《用户协议》</text>
+        <text class="text-sm">和</text>
+        <text class="text-primary text-sm">《隐私政策》</text>
+      </view>
+      <button class="btn btn-primary btn-block" bindtap="phoneLogin">登录</button>
+    </view>
+
+    <view wx:if="{{mode === 'reg'}}" class="reg-login">
+      <view class="form-item">
+        <text class="form-label">昵称</text>
+        <input class="input" placeholder="请输入昵称" maxlength="20"
+          data-key="nickname" value="{{nickname}}" bindinput="onInput" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">手机号</text>
+        <input class="input" type="number" placeholder="请输入手机号" maxlength="11"
+          data-key="phone" value="{{phone}}" bindinput="onInput" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">密码</text>
+        <input class="input" password placeholder="请输入密码(至少6位)" maxlength="20"
+          data-key="password" value="{{password}}" bindinput="onInput" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">确认密码</text>
+        <input class="input" password placeholder="请再次输入密码" maxlength="20"
+          data-key="confirmPassword" value="{{confirmPassword}}" bindinput="onInput" />
+      </view>
+      <view class="agree-row" bindtap="toggleAgree">
+        <view class="checkbox {{agree ? 'checked' : ''}}"></view>
+        <text class="text-sm">已阅读并同意</text>
+        <text class="text-primary text-sm">《用户协议》</text>
+      </view>
+      <button class="btn btn-primary btn-block" bindtap="register">注册并登录</button>
+    </view>
+  </view>
+
+  <view class="footer-tip">
+    <text class="text-light text-sm">© 2025 校园综合服务 · 让校园更美好</text>
+  </view>
+</view>

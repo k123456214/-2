@@ -1,0 +1,56 @@
+.page-scroll {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+.hero {
+  background: linear-gradient(135deg, #13c2c2 0%, #5cdbd3 100%);
+  color: #fff;
+  padding: 50rpx 30rpx;
+}
+.hero-title { font-size: 38rpx; font-weight: bold; display: block; }
+.hero-sub { font-size: 24rpx; color: rgba(255,255,255,0.9); margin-top: 10rpx; display: block; }
+
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+.card-title { font-size: 30rpx; font-weight: bold; display: block; margin-bottom: 20rpx; }
+
+.url-box {
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.url-text { font-size: 26rpx; color: #666; word-break: break-all; }
+
+.open-btn {
+  background: #13c2c2 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 40rpx !important;
+  padding: 20rpx 0 !important;
+  font-size: 28rpx !important;
+  font-weight: bold;
+  width: 100%;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+.link-item:last-child { border-bottom: none; }
+.link-icon { font-size: 36rpx; margin-right: 16rpx; }
+.link-name { flex: 1; font-size: 28rpx; color: #333; }
+.link-arrow { font-size: 32rpx; color: #ccc; }
+
+.tip { background: #fffbe6; border: 2rpx solid #ffe58f; }
+.tip-title { font-size: 28rpx; font-weight: bold; color: #ad6800; display: block; margin-bottom: 10rpx; }
+.tip-text { font-size: 26rpx; color: #8c6e00; line-height: 1.6; display: block; }

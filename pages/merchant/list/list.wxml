@@ -1,0 +1,49 @@
+<view class="page">
+  <view class="cat-bar">
+    <scroll-view scroll-x class="cat-scroll">
+      <view wx:for="{{categories}}" wx:key="id"
+        class="cat-item {{activeCat === item.id ? 'active' : ''}}"
+        data-id="{{item.id}}" bindtap="onCatTap">
+        {{item.name}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="sort-bar">
+    <view wx:for="{{sortOptions}}" wx:key="id"
+      class="sort-item {{activeSort === item.id ? 'active' : ''}}"
+      data-id="{{item.id}}" bindtap="onSortTap">
+      {{item.name}}
+    </view>
+    <view class="apply-entry" bindtap="onApplyTap">
+      🏪 我要入驻
+    </view>
+  </view>
+
+  <view class="shop-list" wx:if="{{shops.length > 0}}">
+    <view wx:for="{{shops}}" wx:key="id" class="card shop-card" bindtap="onShopTap" data-id="{{item.id}}">
+      <view class="shop-thumb">🏪</view>
+      <view class="shop-info">
+        <view class="shop-title-row">
+          <text class="shop-name">{{item.name}}</text>
+          <text class="tag tag-success" wx:if="{{item.category}}">{{item.category}}</text>
+        </view>
+        <view class="shop-sub">
+          <text class="rating">★ {{item.rating}}</text>
+          <text class="text-sm text-light" style="margin-left:16rpx;">月销{{item.sales}}</text>
+          <text class="text-sm text-light" style="margin-left:16rpx;">{{item.distance}}</text>
+        </view>
+        <view class="text-sm text-light mt-10">{{item.description || item.address}}</view>
+        <view class="shop-bottom">
+          <text class="text-sm text-light">起送 ¥{{item.minOrder || 0}}</text>
+          <text class="text-sm text-light">配送 ¥{{item.deliveryFee || 0}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">🏪</text>
+    <text class="text-light">暂无商户</text>
+  </view>
+</view>

@@ -1,0 +1,88 @@
+.page-scroll {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 180rpx;
+}
+
+.hero {
+  background: linear-gradient(135deg, #fa8c16 0%, #ffc069 100%);
+  color: #fff;
+  padding: 40rpx 30rpx;
+  text-align: center;
+}
+.reward { font-size: 24rpx; color: rgba(255,255,255,0.9); display: block; }
+.price { font-size: 80rpx; font-weight: bold; display: block; margin-top: 10rpx; }
+.status-row { margin-top: 20rpx; }
+.status {
+  display: inline-block;
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card {
+  background: #fff;
+  margin: 20rpx;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+.title { font-size: 34rpx; font-weight: bold; display: block; }
+.type { display: inline-block; background: #fff7e6; color: #fa8c16; padding: 4rpx 16rpx; border-radius: 8rpx; font-size: 22rpx; margin-top: 12rpx; }
+.desc { font-size: 28rpx; color: #666; margin-top: 16rpx; display: block; line-height: 1.6; }
+
+.card-title { font-size: 30rpx; font-weight: bold; display: block; margin-bottom: 20rpx; }
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14rpx 0;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { font-size: 26rpx; color: #999; }
+.info-value { font-size: 26rpx; color: #333; text-align: right; max-width: 60%; }
+
+.publisher { display: flex; align-items: center; }
+.avatar {
+  width: 80rpx; height: 80rpx;
+  background: linear-gradient(135deg, #fa8c16 0%, #ffc069 100%);
+  border-radius: 50%;
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.publisher-name { font-size: 28rpx; font-weight: bold; display: block; }
+.publisher-meta { font-size: 22rpx; color: #999; margin-top: 4rpx; display: block; }
+
+.action-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.05);
+}
+.accept-btn {
+  background: #fa8c16 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 40rpx !important;
+  padding: 20rpx 0 !important;
+  font-size: 30rpx !important;
+  font-weight: bold;
+  width: 100%;
+}
+.done-btn {
+  background: #52c41a !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 40rpx !important;
+  padding: 20rpx 0 !important;
+  font-size: 30rpx !important;
+  font-weight: bold;
+  width: 100%;
+}

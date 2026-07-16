@@ -1,0 +1,61 @@
+export default defineAppConfig({
+  pages: [
+    'pages/index/index',
+    'pages/food/index/index',
+    'pages/food/shop/shop',
+    'pages/food/checkout/checkout',
+    'pages/food/order-detail/order-detail',
+    'pages/merchant/list/list',
+    'pages/merchant/detail/detail',
+    'pages/merchant/apply/apply',
+    'pages/merchant/my-shop/my-shop',
+    'pages/merchant/goods-manage/goods-manage',
+    'pages/merchant/goods-edit/goods-edit',
+    'pages/merchant/order-manage/order-manage',
+    'pages/community/list/list',
+    'pages/community/detail/detail',
+    'pages/community/create/create',
+    'pages/community/activity/activity',
+    'pages/forum/list/list',
+    'pages/forum/detail/detail',
+    'pages/forum/publish/publish',
+    'pages/confession/list/list',
+    'pages/confession/detail/detail',
+    'pages/confession/publish/publish',
+    'pages/market/list/list',
+    'pages/market/detail/detail',
+    'pages/market/publish/publish',
+    'pages/market/my-goods/my-goods',
+    'pages/errand/list/list',
+    'pages/errand/publish/publish',
+    'pages/errand/detail/detail',
+    'pages/custom/diy/diy',
+    'pages/custom/h5/h5',
+    'pages/user/profile/profile',
+    'pages/user/login/login',
+    'pages/user/order/my-order',
+    'pages/user/coupon/coupon',
+    'pages/user/favorite/favorite',
+    'pages/user/settings/settings'
+  ],
+  window: {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTitleText: '校园综合服务',
+    navigationBarTextStyle: 'black',
+    backgroundColor: '#f5f5f5'
+  },
+  tabBar: {
+    color: '#999999',
+    selectedColor: '#1890ff',
+    backgroundColor: '#ffffff',
+    borderStyle: 'black',
+    list: [
+      { pagePath: 'pages/index/index', text: '首页' },
+      { pagePath: 'pages/food/index/index', text: '外卖' },
+      { pagePath: 'pages/community/list/list', text: '社区' },
+      { pagePath: 'pages/forum/list/list', text: '论坛' },
+      { pagePath: 'pages/user/profile/profile', text: '我的' }
+    ]
+  }
+})

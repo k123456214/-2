@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="card">
+    <view class="card-title">社区信息</view>
+    <view class="form-item">
+      <text class="form-label">社区名称</text>
+      <input class="input" placeholder="给你的社区起个名字" data-key="name" value="{{form.name}}" bindinput="onInput" maxlength="20" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">分类</text>
+      <view class="cat-row">
+        <view wx:for="{{categories}}" wx:key="*this"
+          class="cat-chip {{form.category === item ? 'active' : ''}}"
+          data-idx="{{index}}" bindtap="onCatTap">
+          {{item}}
+        </view>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">社区简介</text>
+      <textarea class="textarea" placeholder="简单介绍一下你的社区" data-key="description" value="{{form.description}}" bindinput="onInput" maxlength="100"></textarea>
+    </view>
+    <view class="form-item">
+      <text class="form-label">社区公告</text>
+      <textarea class="textarea" placeholder="发布社区公告（可选）" data-key="announcement" value="{{form.announcement}}" bindinput="onInput" maxlength="200"></textarea>
+    </view>
+  </view>
+
+  <view style="padding: 20rpx 40rpx 40rpx;">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '创建社区'}}
+    </button>
+  </view>
+</view>

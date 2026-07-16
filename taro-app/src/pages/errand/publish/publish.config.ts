@@ -1,0 +1,4 @@
+export default definePageConfig({
+  navigationBarTitleText: '发布跑腿',
+  backgroundColor: '#f5f5f5'
+})

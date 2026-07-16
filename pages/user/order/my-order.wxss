@@ -1,0 +1,88 @@
+.order-list { padding: 20rpx; }
+.order-card { margin: 0 0 20rpx; }
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.shop-name {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.status-text {
+  font-size: 24rpx;
+}
+
+.status-0, .status-1 { color: #fa8c16; }
+.status-2 { color: #1890ff; }
+.status-3 { color: #52c41a; }
+.status-4 { color: #999; }
+.status-5 { color: #999; }
+
+.goods-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx dashed #f0f0f0;
+}
+
+.goods-row:last-of-type { border-bottom: none; }
+
+.goods-thumb {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+
+.goods-info {
+  flex: 1;
+  margin-left: 20rpx;
+  overflow: hidden;
+}
+
+.goods-name {
+  font-size: 28rpx;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.goods-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16rpx 0;
+  gap: 20rpx;
+}
+
+.order-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16rpx;
+  flex-wrap: wrap;
+  padding-top: 10rpx;
+}
+
+.btn-outline {
+  background: #fff;
+  color: #333;
+  border: 2rpx solid #ddd;
+}

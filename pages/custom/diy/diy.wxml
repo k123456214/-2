@@ -1,0 +1,57 @@
+<view class="page" wx:if="{{page}}">
+  <view class="page-banner" wx:if="{{page.title}}">
+    <text class="page-title">{{page.title}}</text>
+  </view>
+
+  <block wx:for="{{page.components}}" wx:for-item="comp" wx:key="type">
+    <view wx:if="{{comp.type === 'title'}}" class="card diy-title">
+      <text>{{comp.content}}</text>
+    </view>
+
+    <view wx:if="{{comp.type === 'text'}}" class="card diy-text">
+      <view>{{comp.content}}</view>
+    </view>
+
+    <view wx:if="{{comp.type === 'richtext'}}" class="card diy-richtext">
+      <rich-text nodes="{{comp.content}}"></rich-text>
+    </view>
+
+    <view wx:if="{{comp.type === 'image'}}" class="diy-image-block">
+      <view class="diy-image">📷</view>
+      <view class="text-sm text-light" wx:if="{{comp.url}}">点击查看大图</view>
+    </view>
+
+    <view wx:if="{{comp.type === 'divider'}}" class="diy-divider">
+      <view class="line"></view>
+    </view>
+
+    <view wx:if="{{comp.type === 'button'}}" class="diy-btn-block">
+      <view class="diy-button" data-url="{{comp.url}}" bindtap="onTapButton">{{comp.text}}</view>
+    </view>
+
+    <view wx:if="{{comp.type === 'goods-list'}}" class="card diy-goods">
+      <view class="card-title">精选推荐</view>
+      <view class="goods-mini" wx:for="{{[1,2,3,4]}}" wx:for-item="idx" wx:key="idx" data-id="{{idx}}" bindtap="onGoodsTap">
+        <view class="goods-mini-img">📦</view>
+        <view class="goods-mini-info">
+          <view class="goods-mini-name">商品 {{idx}}</view>
+          <view class="goods-mini-price">¥{{idx * 100}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{comp.type === 'empty'}}" class="empty">
+      <text class="empty-icon">📋</text>
+      <text class="text-light">{{comp.content || '暂无内容'}}</text>
+    </view>
+  </block>
+
+  <view class="empty" wx:if="{{!page.components || page.components.length === 0}}">
+    <text class="text-light">页面加载完成</text>
+  </view>
+</view>
+
+<view class="empty" wx:else>
+  <text class="empty-icon">✨</text>
+  <text class="text-light">加载中...</text>
+</view>

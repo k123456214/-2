@@ -1,0 +1,29 @@
+<view class="page">
+  <view class="goods-list" wx:if="{{goods.length > 0}}">
+    <view wx:for="{{goods}}" wx:for-index="idx" wx:key="id" class="card goods-card">
+      <view class="goods-thumb">🍽️</view>
+      <view class="goods-info">
+        <view class="flex-between">
+          <text class="goods-name">{{item.name}}</text>
+          <view class="tag {{item.status === 1 ? 'tag-success' : 'tag-warning'}}">{{item.status === 1 ? '上架' : '下架'}}</text>
+        </view>
+        <view class="text-sm text-light mt-10">库存 {{item.stock}} · 销量 {{item.sales}}</view>
+        <view class="goods-bottom">
+          <text class="price">¥{{item.price}}</text>
+          <text class="text-sm text-light" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+        </view>
+      </view>
+      <view class="goods-actions">
+        <view class="btn btn-outline btn-sm" data-id="{{item.id}}" data-idx="{{idx}}" catchtap="onToggle">{{item.status === 1 ? '下架' : '上架'}}</view>
+        <view class="btn btn-sm" data-id="{{item.id}}" catchtap="onEdit">编辑</view>
+        <view class="btn btn-danger btn-sm" data-id="{{item.id}}" catchtap="onDelete">删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="empty" wx:else>
+    <text class="empty-icon">🍽️</text>
+    <text class="text-light">暂无商品</text>
+  </view>
+
+  <view class="fab" bindtap="onAdd">+</view>
+</view>

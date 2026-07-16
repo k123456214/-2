@@ -1,0 +1,54 @@
+.order-list { padding: 20rpx; }
+
+.order-card {
+  margin-bottom: 20rpx;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.order-user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0 8rpx;
+}
+
+.user-name {
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.order-item-line {
+  display: flex;
+  padding: 8rpx 0;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-top: 1rpx dashed #eee;
+  margin-top: 12rpx;
+}
+
+.order-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12rpx;
+  padding-top: 10rpx;
+}
+
+.btn-outline {
+  background: #fff;
+  color: #333;
+  border: 2rpx solid #ddd;
+}

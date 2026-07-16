@@ -1,0 +1,51 @@
+<view class="page" wx:if="{{confession}}">
+  <view class="card confession-card">
+    <view class="confession-header">
+      <view class="avatar">💖</view>
+      <view style="flex:1;">
+        <text class="confession-author">{{confession.author}}</text>
+        <view class="text-sm text-light">刚刚</view>
+      </view>
+    </view>
+    <view class="confession-content">{{confession.content}}</view>
+    <view class="confession-actions">
+      <view class="like-btn {{liked ? 'active' : ''}}" bindtap="onLike">
+        <text>❤️ {{confession.likes}}</text>
+      </view>
+      <view class="btn btn-outline btn-sm" bindtap="onReport">
+        <text>⚠️ 举报</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card comment-section">
+    <view class="card-title">评论 ({{confession.comments}})</view>
+    <view wx:for="{{confession.replies}}" wx:for-index="idx" wx:key="id" class="comment-item">
+      <view class="comment-avatar">💬</view>
+      <view class="comment-body">
+        <view class="comment-header">
+          <text class="text-bold">{{item.author}}</text>
+        </view>
+        <view class="comment-text">{{item.content}}</view>
+        <view class="comment-footer">
+          <text class="text-sm text-light">❤️ {{item.likes}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!confession.replies || confession.replies.length === 0}}">
+      <text class="text-light text-sm">暂无评论</text>
+    </view>
+  </view>
+
+  <view style="height: 160rpx;"></view>
+
+  <view class="comment-bar">
+    <input class="input comment-input" placeholder="写点什么..." value="{{commentInput}}" bindinput="onCommentInput" />
+    <view class="btn btn-sm btn-submit" bindtap="onSubmitComment">发送</view>
+  </view>
+</view>
+
+<view class="empty" wx:else>
+  <text class="empty-icon">💌</text>
+  <text class="text-light">加载中...</text>
+</view>

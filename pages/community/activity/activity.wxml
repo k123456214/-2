@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="activity-list" wx:if="{{activities.length > 0}}">
+    <view wx:for="{{activities}}" wx:for-index="idx" wx:key="id" class="card activity-card">
+      <view class="activity-header">
+        <text class="text-bold">{{item.title}}</text>
+        <view class="tag tag-success">{{item.signupCount}}/{{item.capacity}}</view>
+      </view>
+      <view class="activity-meta">
+        <text class="text-sm text-light">📍 {{item.location}}</text>
+        <text class="text-sm text-light">📅 即将开始</text>
+      </view>
+      <view class="text-sm text-light mt-10">{{item.description}}</view>
+      <view class="activity-footer">
+        <text wx:if="{{item.fee > 0}}" class="price text-sm">¥{{item.fee}}</text>
+        <text wx:else class="text-sm text-success">免费</text>
+        <view wx:if="{{item.signed}}" class="btn btn-outline btn-sm">已报名</view>
+        <view wx:else class="btn btn-sm" data-id="{{item.id}}" data-idx="{{idx}}" bindtap="onSignup">立即报名</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">🎯</text>
+    <text class="text-light">暂无活动</text>
+  </view>
+</view>

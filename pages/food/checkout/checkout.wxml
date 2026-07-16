@@ -1,0 +1,74 @@
+<view class="page" style="padding-bottom: 140rpx">
+  <!-- 地址 -->
+  <view class="card address-card" bindtap="onAddressTap">
+    <view wx:if="{{address}}">
+      <view class="address-name">{{address.name}} <text class="text-light">{{address.phone}}</text></view>
+      <view class="address-text">{{address.address}}</view>
+    </view>
+    <view wx:else>
+      <text class="text-light">+ 选择收货地址</text>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="card">
+    <view class="card-title text-lg">{{shopCart.shopName}}</view>
+    <view wx:for="{{goods}}" wx:key="id" class="goods-line">
+      <text class="flex-1">{{item.name}} <text class="text-sm text-light">({{item.spec || '标准'}})</text></text>
+      <text class="text-sm">x{{item.count}}</text>
+      <text class="price text-sm" style="margin-left: 20rpx; min-width: 100rpx; text-align: right">¥{{item.price}}</text>
+    </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="card">
+    <view class="card-title text-lg">备注</view>
+    <input class="input" placeholder="口味、忌口等特殊需求" bindinput="onRemarkInput" />
+  </view>
+
+  <!-- 优惠券 -->
+  <view class="card">
+    <view class="card-title text-lg">优惠券</view>
+    <scroll-view scroll-x style="white-space: nowrap; padding: 10rpx 0">
+      <view class="coupon {{selectedCoupon.id === item.id ? 'selected' : ''}}"
+        wx:for="{{coupons}}" wx:key="id" data-id="{{item.id}}" bindtap="onSelectCoupon" style="display: inline-block; margin-right: 16rpx">
+        <view class="coupon-price">
+          <text wx:if="{{item.type === '满减'}}">¥{{item.discount}}</text>
+          <text wx:else>{{(item.discount * 10).toFixed(1)}}折</text>
+        </view>
+        <view class="coupon-info">
+          <view class="text-sm text-bold">{{item.name}}</view>
+          <view class="text-sm text-light">满¥{{item.minOrder}}可用</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 支付方式 -->
+  <view class="card">
+    <view class="card-title text-lg">支付方式</view>
+    <view wx:for="{{payMethods}}" wx:key="id" class="pay-item" data-id="{{item.id}}" bindtap="onPayMethodSelect">
+      <text style="font-size: 36rpx; margin-right: 16rpx">{{item.icon}}</text>
+      <text class="flex-1">{{item.name}}</text>
+      <text class="text-primary" wx:if="{{paymentType === item.id}}">✓</text>
+    </view>
+  </view>
+
+  <!-- 费用明细 -->
+  <view class="card">
+    <view class="price-line"><text>商品小计</text><text>¥{{totalPrice}}</text></view>
+    <view class="price-line"><text>配送费</text><text>¥{{deliveryFee}}</text></view>
+    <view class="price-line" wx:if="{{couponDiscount > 0}}"><text class="text-success">优惠券</text><text class="text-success">-¥{{couponDiscount}}</text></view>
+    <view class="divider"></view>
+    <view class="price-line"><text class="text-bold">合计</text><text class="price price-lg">¥{{payPrice}}</text></view>
+  </view>
+
+  <!-- 底部提交 -->
+  <view class="footer-bar">
+    <view class="flex-1">
+      <text class="price price-lg">¥{{payPrice}}</text>
+      <text class="text-sm text-light" style="margin-left: 10rpx">合计</text>
+    </view>
+    <button class="btn" bindtap="onSubmit">提交订单</button>
+  </view>
+</view>
