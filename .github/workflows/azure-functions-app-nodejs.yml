@@ -1,0 +1,66 @@
+#此工作流将构建一个节点。JS项目，并在将提交推送到默认分支时将其部署到Windows或Linux上的AzureFunctionsApp。
+#
+#此工作流假定您已经创建了目标Azure函数应用。
+#有关说明，请参阅：
+#-https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node
+#-https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-typescript
+#
+#配置此工作流：
+#1.在存储库中设置以下机密：
+#-AZURE_FUNCTIONAPP_PUBLISH_PROFILE
+#2.更改配置的env变量.
+#
+#有关以下内容的详细信息：
+#-用于Azure的GitHub操作：https://github.com/Azure/Actions
+#-蔚蓝函数操作： https://github.com/Azure/functions-action
+#-发布配置文件：https://github.com/Azure/functions-action#using-publish-profile-as-deployment-credential-rommended
+#-RBAC的Azure服务主体：https://github.com/Azure/functions-action#using-azure-service-principal-for-rbac-as-deployment-credential
+#
+#要获得更多示例，以开始使用要部署到Azure的GitHub操作工作流：https://github.com/Azure/actions-workflow-samples/tree/master/FunctionApp
+
+名称：将节点.js项目部署到Azure函数应用程序：将节点.js项目部署到Azure函数应用程序
+
+在……之上：:
+推：:
+分支机构：["main"]: ["主要"]
+
+env：:
+Azure_FUNCTIONAPP_NAME：'您的应用程序名称'#将此设置为您在Azure上的功能应用程序名称: '您的应用程序名称'   #将此设置为您在Azure上的功能应用名称
+Azure_FUNCTIONAPP_PACKAGE_PATH："."#将此设置为函数应用程序项目的路径，默认为库根目录: '.'       #将此设置为函数应用程序项目的路径，默认为库根目录
+节点版本(_V)：'20.x'#将此设置为要使用的节点版本(例如'8.x'、'10.x'、'12.x'): '20.x'                      #将此设置为要使用的节点版本(例如'8.x'、'10.x'、'12.x')
+
+作业：:
+构建和部署：:
+run-on:windows-lastest#对于Linux，使用ubuntu-lastest: Windows-最新#对于Linux，使用Ubuntu-最新
+环境：dev: dev
+步骤：:
+'签出GitHub操作'用途-
+用途：操作/签出@v4: 操作/结帐@v4
+
+#如果要使用Azure RBAC而不是发布配置文件，请取消注释下面的任务#如果要使用Azure RBAC而不是发布配置文件，请取消注释下面的任务
+#-名称：'通过Azure CLI登录'#-名称：'通过Azure CLI登录'
+#uses:azure/login@v1#uses:azure/login@v1
+#with：#with：
+#学分：${{个secretters.Azure_RBAC_CREDENTIALS}}#在存储库中设置Azure_RBAC_CREDENTIALS机密#creds：${{secretters.Azure_RBAC_CREDENTIALS}}#在存储库中设置Azure_RBAC_CREDENTIALS机密
+
+-名称：安装节点${{env.NODE_VERSION}}环境名: 安装节点${{env.NODE_VERSION}}环境
+用途：操作/setup-node@v4: 操作/设置-节点@v4
+和……一起：:
+节点版本：${{env.NODE_VERSION}}: ${{env.NODE_VERSION}}
+
+-名称：'使用Npm解析专案相依性'name: '使用Npm解析项目依赖项'
+shell:pwsh#对于Linux，使用bash: pwsh#对于Linux，使用bash
+运行：|: |
+pushd'./${{env.AZURE_FUNCTIONAPP_PACKAGE_PATH}}'
+npm安装
+npm运行内部版本--if-resent
+npm运行测试--如果存在
+popd
+
+-名称："运行Azure函数操作"name: '运行Azure函数操作'
+用途：Azure/functions-action@v1: Azure/functions-action@v1
+ID:fa
+和……一起：
+应用程序名称：${{env.AZURE_FUNCTIONAPP_NAME}}
+软件包：${{env.AZURE_FUNCTIONAPP_PACKAGE_PATH}}
+发布配置文件：${{secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE}}#删除要使用Azure RBAC的发布配置文件
